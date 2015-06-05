@@ -1,0 +1,18 @@
+{
+  "name": "erl-indent",
+  "main": "./lib/erl-indent",
+  "version": "0.1.0",
+  "description": "Use emacs to properly indent your Erlang files.",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "erlang:indent"
+  },
+  "repository": "https://github.com/tduffield/erl-indent",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
