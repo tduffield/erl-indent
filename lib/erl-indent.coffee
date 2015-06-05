@@ -1,17 +1,13 @@
 {CompositeDisposable} = require 'atom'
 {exec} = require 'child_process'
 Shell = require 'shell'
+path = require 'path'
+fs = require 'fs'
 
 module.exports =
 
-  config:
-    indent_bin:
-      type: 'string'
-      default: '/usr/local/bin/erl-indent'
-
   activate: ->
     atom.commands.add 'atom-workspace', 'erlang:indent': => @indent()
-
 
   deactivate: ->
     @disposable?.dispose()
@@ -21,5 +17,9 @@ module.exports =
     editor = atom.workspace.getActivePaneItem()
     file = editor?.buffer.file
     filePath = file?.path
-    bin = atom.config.get('erl-indent.indent_bin')
-    exec (bin + ' ' + filePath)
+
+    # use indent_bin from the current project
+    current_dir = path.dirname fs.realpathSync __filename
+    scripts_dir = path.resolve current_dir, '../scripts'
+    indent_bin = path.join scripts_dir, 'erl-indent'
+    exec indent_bin + ' ' + filePath
