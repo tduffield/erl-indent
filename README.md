@@ -11,3 +11,9 @@ indent script will take forever to run.
 
     # Start an emacs server in the background
     emacs --daemon
+
+# Usage
+
+Once the plugin is installed and your emacs server is running, you should be able to
+open your Command Palette and run **Erlang: Indent**. Please note that the file must
+first be saved in order for it to work properly.
