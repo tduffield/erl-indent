@@ -6,26 +6,8 @@
 #
 # adapted from http://www.cslab.pepperdine.edu/warford/BatchIndentationEmacs.html
 
-# Get the path to the current files current directory
-function abspath {
-    if [[ -d "$1" ]]
-    then
-        pushd "$1" >/dev/null
-        pwd -P
-        popd >/dev/null
-    elif [[ -e $1 ]]
-    then
-        pushd "$(dirname "$1")" >/dev/null
-        echo "$(pwd)/$(basename "$1")"
-        popd >/dev/null
-    else
-        echo "$1" does not exist! >&2
-        return 127
-    fi
-}
-
 SCRIPT_DIR=`dirname $0`
-SCRIPT_ABS=`abspath $SCRIPT_DIR`
+SCRIPT_ABS=`readlink -f $SCRIPT_DIR`
 
 if [ $# -eq 0 ]
 then
@@ -48,7 +30,7 @@ do
       exit 1
    fi
    echo "Indenting $1 with emacs in batch mode..."
-   emacs --quick -batch $1 -l $SCRIPT_ABS/emacs-indent-erlang.el -f emacs-indent-function
+   emacs -batch $1 -l $SCRIPT_ABS/emacs-indent-erlang.el -f emacs-indent-function
    echo
    shift 1
 done
