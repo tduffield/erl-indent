@@ -1,7 +1,7 @@
 {
   "name": "erl-indent",
   "main": "./lib/erl-indent",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Use emacs to properly indent your Erlang files.",
   "keywords": [],
   "activationCommands": {
