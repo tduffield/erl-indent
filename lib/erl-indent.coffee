@@ -1,6 +1,5 @@
 {BufferedProcess, CompositeDisposable} = require 'atom'
 {exec} = require 'child_process'
-temp = require 'temp'
 path = require 'path'
 fs = require 'fs'
 
